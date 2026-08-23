@@ -8,7 +8,7 @@ A Gen AI HR assistant that answers employee questions using uploaded HR policy d
 - FastAPI
 - Azure model deployment
 - ChromaDB
-- Semantic Kernel
+- langchain
 - Angular
 - Retrieval-Augmented Generation
 
