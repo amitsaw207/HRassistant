@@ -1,3 +1,5 @@
+from typing import Any
+
 from pydantic import BaseModel, Field
 
 
@@ -13,7 +15,6 @@ class SourceResponse(BaseModel):
     source: str
     page: int | str
     text: str
-    distance: float
 
 
 class ChatResponse(BaseModel):
