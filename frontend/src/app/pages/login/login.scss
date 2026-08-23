@@ -1,0 +1,29 @@
+.login-page {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 15px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 460px;
+  border-radius: 16px;
+}
+
+.login-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: #0d6efd;
+  color: white;
+  font-size: 30px;
+}
+
+.login-card h2 {
+  font-weight: 600;
+}

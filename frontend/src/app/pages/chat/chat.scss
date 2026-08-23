@@ -1,0 +1,89 @@
+.chat-page {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 24px;
+  color: #222;
+  font-family: Arial, sans-serif;
+}
+
+textarea {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 10px 0;
+  padding: 12px;
+  font-size: 16px;
+}
+
+button {
+  padding: 12px 20px;
+  background: #1f2937;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+.debug-answer {
+  margin-top: 20px;
+  padding: 10px;
+  background: #fff3cd;
+  color: #664d03;
+}
+
+.answer-section {
+  margin-top: 20px;
+  padding: 20px;
+  background: #ecfdf5;
+  border: 1px solid #10b981;
+  color: #111827;
+}
+
+.answer-section p,
+.source-card p {
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.sources-section {
+  margin-top: 20px;
+  padding: 20px;
+  background: #f3f4f6;
+}
+
+.source-card {
+  margin-top: 12px;
+  padding: 12px;
+  background: white;
+  border-left: 4px solid #374151;
+}
+
+.error-message {
+  margin-top: 20px;
+  padding: 15px;
+  background: #fee2e2;
+  color: #991b1b;
+}
+.answer-section {
+  display: block;
+  visibility: visible;
+  opacity: 1;
+  margin-top: 20px;
+  padding: 20px;
+  background: #ecfdf5;
+  border: 1px solid #10b981;
+  color: #111827;
+}
+
+.answer-section p {
+  display: block;
+  color: #111827;
+  font-size: 18px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}

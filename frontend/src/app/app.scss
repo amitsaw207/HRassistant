@@ -1,0 +1,15 @@
+.navigation {
+  display: flex;
+  gap: 20px;
+  padding: 16px 24px;
+  background: #1f2937;
+}
+
+.navigation a {
+  color: white;
+  text-decoration: none;
+}
+
+.navigation a:hover {
+  text-decoration: underline;
+}

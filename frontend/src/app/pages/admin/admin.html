@@ -1,0 +1,213 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <div>
+    <h2 class="mb-1">
+      <i class="bi bi-shield-lock me-2"></i>
+      HR Policy Management
+    </h2>
+
+    <p class="text-muted mb-0">
+      Upload and manage HR policy documents.
+    </p>
+  </div>
+
+  <button
+    class="btn btn-primary"
+    type="button"
+    (click)="fileInput.click()"
+  >
+    <i class="bi bi-upload me-2"></i>
+    Select Policy
+  </button>
+
+  <input
+    #fileInput
+    type="file"
+    class="d-none"
+    accept=".pdf,.docx,.txt"
+    (change)="onFileSelected($event)"
+  />
+</div>
+
+@if (selectedFile) {
+  <div class="alert alert-info d-flex align-items-center">
+    <i class="bi bi-file-earmark me-2"></i>
+
+    <span>
+      Selected file:
+      <strong>{{ selectedFile.name }}</strong>
+    </span>
+
+    <button
+      class="btn btn-success btn-sm ms-auto"
+      type="button"
+      (click)="uploadDocument()"
+      [disabled]="loading()"
+    >
+      @if (loading()) {
+        <span class="spinner-border spinner-border-sm me-1"></span>
+        Uploading...
+      } @else {
+        <i class="bi bi-cloud-upload me-1"></i>
+        Upload and Index
+      }
+    </button>
+  </div>
+}
+
+@if (message()) {
+  <div class="alert alert-success">
+    <i class="bi bi-check-circle me-2"></i>
+    {{ message() }}
+  </div>
+}
+
+@if (errorMessage()) {
+  <div class="alert alert-danger">
+    <i class="bi bi-exclamation-triangle me-2"></i>
+    {{ errorMessage() }}
+  </div>
+}
+
+@if (selectedDocument(); as document) {
+  <div class="alert alert-warning mt-3">
+    <div class="d-flex justify-content-between align-items-center">
+      <div>
+        <i class="bi bi-pencil-square me-2"></i>
+        Selected policy for update:
+        <strong>{{ document.filename }}</strong>
+      </div>
+
+      <button
+        type="button"
+        class="btn btn-secondary btn-sm"
+        (click)="clearSelectedDocument()"
+      >
+        Cancel
+      </button>
+    </div>
+
+    <hr />
+
+    <label
+      for="replacementFile"
+      class="form-label"
+    >
+      Choose replacement file
+    </label>
+
+    <input
+      id="replacementFile"
+      type="file"
+      class="form-control"
+      accept=".pdf,.docx,.txt"
+      (change)="onReplacementFileSelected($event)"
+    />
+
+    @if (replacementFile) {
+      <button
+        type="button"
+        class="btn btn-warning mt-3"
+        (click)="updateDocument()"
+        [disabled]="loading()"
+      >
+        @if (loading()) {
+          <span class="spinner-border spinner-border-sm me-1"></span>
+          Updating...
+        } @else {
+          <i class="bi bi-arrow-repeat me-1"></i>
+          Update and Re-index
+        }
+      </button>
+    }
+  </div>
+}
+<div class="card border-0 shadow-sm">
+  <div class="card-header bg-dark text-white">
+    <div class="d-flex justify-content-between align-items-center">
+      <h5 class="mb-0">
+        <i class="bi bi-files me-2"></i>
+        Uploaded Policies
+      </h5>
+
+      <span class="badge text-bg-light">
+        {{ documents().length }} document(s)
+      </span>
+    </div>
+  </div>
+
+  <div class="card-body p-0">
+    @if (documents().length === 0) {
+      <div class="text-center text-muted p-5">
+        <i class="bi bi-folder2-open fs-1 d-block mb-3"></i>
+        <p class="mb-0">No policies uploaded yet.</p>
+      </div>
+    } @else {
+      <div class="table-responsive">
+        <table class="table table-hover table-striped align-middle mb-0">
+          <thead class="table-primary">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Policy Name</th>
+              <th scope="col">Type</th>
+              <th scope="col">Size</th>
+              <th scope="col">Last Updated</th>
+              <th scope="col">Status</th>
+              <th scope="col" class="text-end">Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for (
+              document of documents();
+              track document.filename;
+              let index = $index
+            ) {
+              <tr>
+                <td>
+                  {{ index + 1 }}
+                </td>
+
+                <td>
+                  <i class="bi bi-file-earmark-text me-2"></i>
+                  <strong>{{ document.filename }}</strong>
+                </td>
+
+                <td>
+                  <span class="badge text-bg-secondary">
+                    {{ document.file_type }}
+                  </span>
+                </td>
+
+                <td>
+                  {{ document.size_kb }} KB
+                </td>
+
+                <td>
+                  {{ document.updated_at | date: 'dd-MM-yyyy HH:mm' }}
+                </td>
+
+                <td>
+                  <span class="badge text-bg-success">
+                    <i class="bi bi-check-circle me-1"></i>
+                    {{ document.status }}
+                  </span>
+                </td>
+
+                <td class="text-end">
+                  <button
+                    type="button"
+                    class="btn btn-outline-primary btn-sm"
+                    (click)="selectDocumentForUpdate(document)"
+                  >
+                    <i class="bi bi-pencil me-1"></i>
+                    Update
+                  </button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+  </div>
+</div>
