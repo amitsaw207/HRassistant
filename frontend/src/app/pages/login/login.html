@@ -1,0 +1,100 @@
+<div class="login-page">
+  <div class="card login-card border-0 shadow">
+    <div class="card-body p-4 p-md-5">
+      <div class="text-center mb-4">
+        <div class="login-icon">
+          <i class="bi bi-shield-lock"></i>
+        </div>
+
+        <h2 class="mt-3 mb-1">
+          HR Policy Assistant
+        </h2>
+
+        <p class="text-muted mb-0">
+          Sign in to continue
+        </p>
+      </div>
+
+      <form (ngSubmit)="login()">
+        <div class="mb-3">
+          <label
+            for="email"
+            class="form-label"
+          >
+            Email address
+          </label>
+
+          <input
+            id="email"
+            name="email"
+            type="email"
+            class="form-control"
+            [(ngModel)]="email"
+            placeholder="Enter your email"
+            autocomplete="email"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            for="password"
+            class="form-label"
+          >
+            Password
+          </label>
+
+          <input
+            id="password"
+            name="password"
+            type="password"
+            class="form-control"
+            [(ngModel)]="password"
+            placeholder="Enter your password"
+            autocomplete="current-password"
+          />
+        </div>
+
+        @if (errorMessage) {
+          <div class="alert alert-danger">
+            <i class="bi bi-exclamation-circle me-2"></i>
+            {{ errorMessage }}
+          </div>
+        }
+
+        <button
+          type="submit"
+          class="btn btn-primary w-100"
+          [disabled]="loading"
+        >
+          @if (loading) {
+            <span
+              class="spinner-border spinner-border-sm me-2"
+            ></span>
+            Signing in...
+          } @else {
+            <i class="bi bi-box-arrow-in-right me-2"></i>
+            Sign in
+          }
+        </button>
+      </form>
+
+      <hr class="my-4" />
+
+      <div class="small text-muted">
+        <strong>Demo accounts</strong>
+
+        <div class="mt-2">
+          HR Admin:
+          <code>hr@hexaware.com</code> /
+          <code>hr@123</code>
+        </div>
+
+        <div class="mt-1">
+          Employee:
+          <code>amit@hexaware.com</code> /
+          <code>amit@123</code>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
